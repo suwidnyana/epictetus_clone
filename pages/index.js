@@ -1,14 +1,25 @@
-import Navbar from '@components/Navbar';
+import { useState } from 'react';
 import FeaturedPost from '@components/FeaturedPost';
+import CardPost from '@components/CardPost';
+import mockPosts from '../utils/posts.json'
+import Layout from '@components/Layout';
+import Container from '@components/Container';
 
 export default function Home() {
+const [posts, setPosts] = useState(mockPosts);
 
   return (
-    <div className="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-white">
-      <Navbar/>
-      <div className="container mx-auto">
+    <Layout>
+      <Container>
         <FeaturedPost/>
-      </div>
-    </div>
+        <div className="flex -mx-4 flex-wrap mt-6">
+          {posts.map(post => (
+            <div key={post.id} className="w-4/12 px-4">
+                <CardPost {...post}/>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Layout>
   )
 }
