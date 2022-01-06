@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Container from '@components/Container';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -10,13 +11,13 @@ export default function Navbar() {
     ];
     return (
         <nav className="py-10">
-        <div className="container mx-auto">
+        <Container>
           <div className="flex items-center">
-            <div className="w-4/12 flex items-center">
+            <div className="lg:w-2/12 w-6/12 flex items-center ">
               <div className="w-10 h-10 bg-gray-500 rounded flex items-center justify-center mr-4 shadow-2xl">E</div>
               Epictetus
             </div>
-            <div className="w-8/12">
+            <div className="w-7/12">
               <ul className="space-x-10 flex items-center">
                 <li><a href="#" className="hover:underline">UI Design</a></li>
                 <li><a href="#" className="hover:underline">Front End</a></li>
@@ -44,11 +45,11 @@ export default function Navbar() {
                 </li>
               </ul>
             </div>
-            <div className="w-2/12">
+            <div className="w-3/12">
               <input className="bg-gray-700 py-3 px-6 w-full rounded-full bg-search pl-12" placeholder="Search..." />
             </div>
           </div>
-        </div>
+        </Container>
       </nav>
     )
 }
