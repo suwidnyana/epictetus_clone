@@ -4,7 +4,6 @@ import CardPost from '@components/CardPost';
 import mockPosts from '../utils/posts.json'
 import Layout from '@components/Layout';
 import Container from '@components/Container';
-import Footer from '@components/Footer'
 
 export default function Home() {
 const [posts, setPosts] = useState(mockPosts);
