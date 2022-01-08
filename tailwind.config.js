@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'sans': 'Patrick Hand, sans-serif',
+        'sans': 'Fira Code, sans-serif',
       }
     },
   },
