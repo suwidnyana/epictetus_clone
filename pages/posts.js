@@ -5,7 +5,7 @@ import mockpost from '../utils/posts.json'
 import Head from "next/head";
 import { useState } from "react";
 import SectionHeader from "@components/SectionHeader";
-import Head from 'next/head';
+
 
 export default function Posts() {
     const [posts, setPosts] = useState(mockpost)
