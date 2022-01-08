@@ -27,9 +27,13 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          <div className="lg:w-2/12 w-6/12 flex items-center justify-center lg:justify-start">
-            <div className="w-10 h-10 bg-gray-500 rounded flex items-center justify-center mr-4 shadow-2xl">E</div>
-            Epictetus
+          <div className="lg:w-2/12 w-6/12 ">
+            <Link href="/">
+              <a className="flex items-center justify-center lg:justify-start">
+              <div className="w-10 h-10 bg-gray-500 rounded flex items-center justify-center mr-4 shadow-2xl">E</div>
+              Epictetus
+              </a>
+            </Link>
           </div>
           <div className="w-3/12 lg:hidden text-right">
             <button onClick={() => setSearch(!search)}> 
@@ -49,9 +53,9 @@ export default function Navbar() {
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
             <ul className="lg:space-x-10 flex lg:items-center flex-col lg:flex-row space-y-4 lg:space-y-0">
-              <li><a href="#" className="hover:underline">UI Design</a></li>
-              <li><a href="#" className="hover:underline">Front End</a></li>
-              <li><a href="#" className="hover:underline">Back End</a></li>
+              <li><Link href="/posts"><a  className="hover:underline">UI Design</a></Link></li>
+              <li><Link href="/posts"><a  className="hover:underline">Front End</a></Link></li>
+              <li><Link href="/posts"><a  className="hover:underline">Back End</a></Link></li>
               <li className='relative'>
                 <a className="hover:underline cursor-pointer flex items-center" onClick={() => setDropdown(!dropdown)}>
                   Lainnya

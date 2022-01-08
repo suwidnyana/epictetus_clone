@@ -4,12 +4,15 @@ import CardPost from '@components/CardPost';
 import mockPosts from '../utils/posts.json'
 import Layout from '@components/Layout';
 import Container from '@components/Container';
-
+import Head from 'next/head';
 export default function Home() {
 const [posts, setPosts] = useState(mockPosts);
 
   return (
     <Layout>
+       <Head>
+        <title>Home &mdash; Epictetus</title>
+      </Head>
       <Container>
         <FeaturedPost/>
         <div className="flex -mx-4 flex-wrap mt-6">
