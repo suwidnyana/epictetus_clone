@@ -19,7 +19,7 @@ export default function FeaturedPost() {
                   />
                 </div>
             </div>
-            <hr className="border-white/10 mt-10"/>
+            <hr className="border-white/10 mt-10 md:hidden"/>
         </article>
     )
 }
