@@ -2,7 +2,7 @@ import Link from 'next/link'
 import InfoPost from '@components/InfoPost'
 
 export default function FeaturedPost(props) {
-    console.log(props)
+
     return (
         <article>
             <div className="flex -mx-4 lg:items-center items-start flex-wrap">

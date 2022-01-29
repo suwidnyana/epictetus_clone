@@ -9,23 +9,22 @@ import Head from 'next/head';
 export async function getServerSideProps() {
 
   const reqFeatured = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts');
+  const featured = await reqFeatured.json()
 
-  let featured = await reqFeatured.json()
-
-
-  if (featured.length < 1) {
-    featured = {}
-  }
+  const reqPosts = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts');
+  const posts = await reqPosts.json()
 
   return {
     props: {
-      feature: featured[0]
+      feature: featured.length > 0 ? featured[0] : false,
+      posts
     }
   }
 }
 
-export default function Home({ feature }) {
-  const [posts, setPosts] = useState(mockPosts);
+export default function Home({ feature, posts: initialPosts }) {
+  const [posts, setPosts] = useState(initialPosts);
+  console.log(posts);
 
   return (
     <Layout>
@@ -33,13 +32,13 @@ export default function Home({ feature }) {
         <title>Home &mdash; Epictetus</title>
       </Head>
       <Container>
-        <FeaturedPost {...feature} />
+        {feature && <FeaturedPost {...feature} />}
         <div className="flex -mx-4 flex-wrap mt-6">
-          {posts.map(post => (
+          {/* {posts.map(post => (
             <div key={post.id} className="md:w-4/12 w-full px-4 py-6">
               <CardPost {...post} />
             </div>
-          ))}
+          ))} */}
         </div>
       </Container>
     </Layout>
