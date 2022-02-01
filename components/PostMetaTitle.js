@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { FormatDate } from 'utils/date'
 
-export default function PostMetaTitle({ category, title, date, center }) {
+export default function PostMetaTitle({ category, title, date, center, slug }) {
     return (
         <>
             <div className="flex items-center text-white/60  space-x-4">
@@ -9,11 +10,15 @@ export default function PostMetaTitle({ category, title, date, center }) {
                 </div>
                 <span>&bull;</span>
                 <div>
-                    {date}
+                    {FormatDate(date)}
                 </div>
             </div>
             <h2 className={`text-2xl mt-4 ${center} ? 'text-center' : ''}`}>
-                <Link href="/detail"><a>{title}</a></Link>
+                {slug ?
+                    <Link href={slug}><a>{title}</a></Link>
+                    :
+                    <>{title}</>
+                }
             </h2>
         </>
     )

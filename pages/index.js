@@ -24,7 +24,6 @@ export async function getServerSideProps() {
 
 export default function Home({ feature, posts: initialPosts }) {
   const [posts, setPosts] = useState(initialPosts);
-  console.log(posts);
 
   return (
     <Layout>

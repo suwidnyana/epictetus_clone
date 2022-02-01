@@ -12,6 +12,7 @@ export default function Navbar() {
     { text: 'Books', href: '/posts' },
     { text: 'Open Source', href: '/posts' },
   ];
+
   return (
     <nav className="py-10">
       <Container>

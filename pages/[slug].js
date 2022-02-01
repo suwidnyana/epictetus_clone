@@ -5,10 +5,14 @@ import PostAuthor from "@components/PostAuthor";
 import Head from "next/head";
 
 export async function getServerSideProps({ params: { slug } }) {
-  console.log(slug);
-  const reqDetail = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?slug=' + slug);
-  const single = reqDetail.json()
 
+  const reqDetail = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?slug=' + slug);
+  const single = await reqDetail.json()
+
+  if (!single.length)
+    return {
+      notFound: true
+    }
 
   return {
     props: {
@@ -18,35 +22,54 @@ export async function getServerSideProps({ params: { slug } }) {
 
 }
 
-export default function Detail({ single }) {
+export default function Detail({
+  single: {
+    title,
+    published_at,
+    thumbnail,
+    category: {
+      name: categoryName
+    },
+    headline,
+    content,
+    slug,
+    author: {
+      name: authorName,
+      job: authorJob,
+      avatar: {
+        name: avatarName
+      }
+    } } }) {
+  console.log(thumbnail.name)
+
   return (
     <Layout>
       <Head>
-        <title>Detail &mdash; Epictetus</title>
+        <title>{title} &mdash; Epictetus</title>
       </Head>
       <Container>
         <div className="md:w-6/12 w-full mx-auto flex items-center flex-col">
           <PostMetaTitle
-            category="UI Design"
-            date="July 2, 2021"
-            title="Understanding color theory: the color wheel and finding complementary colors"
+            slug={slug}
+            category={categoryName}
+            date={published_at}
+            title={title}
             center
           />
           <PostAuthor
-            authorName="Leslie Alexander"
-            authorJob="UI Designer"
-            authorAvatar="/author-1.png"
+            authorName={authorName}
+            authorJob={authorJob}
+            authorAvatar={avatarName}
           />
         </div>
         <div className="md:w-10/12 w-full mx-auto my-10">
-          <img src="/detail-image.png" className="w-full rounded-lg" />
+          <img src={thumbnail.name} className="w-full rounded-lg" />
         </div>
         <div className="md:w-8/12 w-full mx-auto leading-relaxed">
           <p className="text-xl mb-4">
-            Male sixth sea it a. Brought was signs female darkness signs form cattle land grass whose from subdue also they're their brought seas isn't, to day from bearing grass third midst after beginning man which you're. Dry, gathering beginning given made them evening.
+            {headline}
           </p>
-          <p className="mb-4">Lights dry. Thing, likeness, forth shall replenish upon abundantly our green. Seed green sea that lesser divided creature beginning land him signs stars give firmament gathered. Wherein there their morning a he grass. Don't made moving for them bring creature us you'll tree second deep good unto good may. Us yielding.</p>
-          <p>Have. Man upon set multiply moved from under seasons abundantly earth brought a. They're open moved years saw isn't morning darkness. Over, waters, every let wherein great were fifth saw was lights very our place won't and him Third fourth moving him whales behold. Beast second stars lights great was don't green give subdue his. Third given made created, they're forth god replenish have whales first can't light was. Herb you'll them beast kind divided. Were beginning fly air multiply god Yielding sea don't were forth.</p>
+          <p className="mb-4">{content}</p>
         </div>
       </Container>
     </Layout>
