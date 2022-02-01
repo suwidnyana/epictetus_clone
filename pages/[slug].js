@@ -3,6 +3,8 @@ import Container from "@components/Container";
 import PostMetaTitle from "@components/PostMetaTitle";
 import PostAuthor from "@components/PostAuthor";
 import Head from "next/head";
+import ReactMarkdown from 'react-markdown'
+
 
 export async function getServerSideProps({ params: { slug } }) {
 
@@ -69,7 +71,11 @@ export default function Detail({
           <p className="text-xl mb-4">
             {headline}
           </p>
-          <p className="mb-4">{content}</p>
+
+          <ReactMarkdown className="prose">
+            {content}
+          </ReactMarkdown>
+
         </div>
       </Container>
     </Layout>
