@@ -3,10 +3,25 @@ import Container from "@components/Container";
 import PostMetaTitle from "@components/PostMetaTitle";
 import PostAuthor from "@components/PostAuthor";
 import Head from "next/head";
-export default function Detail() {
+
+export async function getServerSideProps({ params: { slug } }) {
+  console.log(slug);
+  const reqDetail = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?slug=' + slug);
+  const single = reqDetail.json()
+
+
+  return {
+    props: {
+      single: single.length > 0 ? single[0] : {}
+    },
+  };
+
+}
+
+export default function Detail({ single }) {
   return (
     <Layout>
-       <Head>
+      <Head>
         <title>Detail &mdash; Epictetus</title>
       </Head>
       <Container>
