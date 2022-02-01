@@ -45,7 +45,7 @@ export default function Detail({
   console.log(thumbnail.name)
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>{title} &mdash; Epictetus</title>
       </Head>
@@ -78,6 +78,6 @@ export default function Detail({
 
         </div>
       </Container>
-    </Layout>
+    </>
   )
 }

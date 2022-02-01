@@ -2,7 +2,6 @@ import { useState } from 'react';
 import FeaturedPost from '@components/FeaturedPost';
 import CardPost from '@components/CardPost';
 import mockPosts from '../utils/posts.json'
-import Layout from '@components/Layout';
 import Container from '@components/Container';
 import Head from 'next/head';
 
@@ -22,11 +21,11 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ feature, posts: initialPosts }) {
+export default function Home({ feature, posts: initialPosts, categories }) {
   const [posts, setPosts] = useState(initialPosts);
-
+  console.log(categories)
   return (
-    <Layout>
+    <>
       <Head>
         <title>Home &mdash; Epictetus</title>
       </Head>
@@ -40,6 +39,6 @@ export default function Home({ feature, posts: initialPosts }) {
           ))}
         </div>
       </Container>
-    </Layout>
+    </>
   )
 }
