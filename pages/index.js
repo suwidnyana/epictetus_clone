@@ -8,10 +8,10 @@ import Head from 'next/head';
 
 export async function getServerSideProps() {
 
-  const reqFeatured = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts');
+  const reqFeatured = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?featured=true');
   const featured = await reqFeatured.json()
 
-  const reqPosts = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts');
+  const reqPosts = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?featured_ne=true');
   const posts = await reqPosts.json()
 
   return {
@@ -34,11 +34,11 @@ export default function Home({ feature, posts: initialPosts }) {
       <Container>
         {feature && <FeaturedPost {...feature} />}
         <div className="flex -mx-4 flex-wrap mt-6">
-          {/* {posts.map(post => (
+          {posts.map(post => (
             <div key={post.id} className="md:w-4/12 w-full px-4 py-6">
               <CardPost {...post} />
             </div>
-          ))} */}
+          ))}
         </div>
       </Container>
     </Layout>

@@ -7,7 +7,7 @@ export default function FeaturedPost(props) {
         <article>
             <div className="flex -mx-4 lg:items-center items-start flex-wrap">
                 <div className="px-4 lg:w-8/12 md:w-7/12 w-full">
-                    <Link href="/detail">
+                    <Link href={props.slug}>
                         <a>
                             <img src={process.env.NEXT_PUBLIC_API_URL + props.thumbnail.formats.medium.url} className="rounded-xl w-full mb-4 md:mb-0" />
                         </a>
