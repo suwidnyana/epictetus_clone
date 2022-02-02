@@ -16,11 +16,6 @@ export async function getServerSideProps({ params: { category } }) {
 
   const posts = await reqPosts.json();
 
-  if (!posts.length)
-    return {
-      notFound: true,
-    };
-
   return {
     props: {
       posts,
@@ -39,7 +34,11 @@ export default function Posts({ posts, categoryData }) {
       </Head>
       <Container>
         <SectionHeader>{categoryData.name}</SectionHeader>
-        <PostList posts={posts} />
+        <PostList
+          posts={posts}
+          noResultTitle="No Posts"
+          noResultDescription="No posts in this category"
+        />
       </Container>
     </>
   );

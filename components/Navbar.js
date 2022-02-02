@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Container from "@components/Container";
 import { useState } from "react";
-
+import Router from "next/router";
 export default function Navbar({ categories }) {
-  const [dropdown, setDropdown] = useState(false);
+  const [keyword, setKeyword] = useState(false);
   const [offCanvas, setOffCanvas] = useState(false);
   const [search, setSearch] = useState(false);
 
@@ -12,6 +12,14 @@ export default function Navbar({ categories }) {
     href: `/category/${category.slug}`,
   }));
 
+  function doSearch(e) {
+    e.preventDefault();
+
+    Router.push({
+      pathname: "/search",
+      query: { q: keyword },
+    });
+  }
   return (
     <nav className="py-10">
       <Container>
@@ -150,10 +158,13 @@ export default function Navbar({ categories }) {
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
-            <input
-              className="bg-gray-700 py-3 px-6 w-full lg:rounded-full rounded-lg bg-search pl-12"
-              placeholder="Search ..."
-            />
+            <form onSubmit={doSearch}>
+              <input
+                className="bg-gray-700 py-3 px-6 w-full lg:rounded-full rounded-lg bg-search pl-12"
+                placeholder="Search ..."
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+            </form>
           </div>
         </div>
       </Container>
