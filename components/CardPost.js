@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function CardPost(props) {
   return (
     <article>
-      <Link href={props.slug}>
+      <Link href={`/${props.slug}`}>
         <a>
           <img
             src={process.env.NEXT_PUBLIC_API_URL + props.thumbnail.url}
