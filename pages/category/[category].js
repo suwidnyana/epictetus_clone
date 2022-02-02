@@ -6,6 +6,12 @@ import { useState } from "react";
 import SectionHeader from "@components/SectionHeader";
 
 export async function getServerSideProps({ params: { category } }) {
+  const reqCategory = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/categories?slug=" + category
+  );
+
+  const categoryData = await reqCategory.json();
+
   const reqPosts = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?_where[category.slug]=" + category
   );
@@ -20,13 +26,13 @@ export async function getServerSideProps({ params: { category } }) {
   return {
     props: {
       posts,
+      categoryData: categoryData.length > 0 ? categoryData[0] : {},
     },
   };
 }
 
-export default function Posts({ posts: initialPosts }) {
-  const [posts, setPosts] = useState(initialPosts);
-  console.log(posts);
+export default function Posts({ posts, categoryData }) {
+  console.log(categoryData);
 
   return (
     <>
@@ -34,7 +40,7 @@ export default function Posts({ posts: initialPosts }) {
         <title>Categories &mdash; Epictetus</title>
       </Head>
       <Container>
-        <SectionHeader></SectionHeader>
+        <SectionHeader>{categoryData.name}</SectionHeader>
         <div className="flex -mx-4 flex-wrap mt-6">
           {posts.map((post) => (
             <div key={post.id} className="md:w-4/12 w-full px-4 py-6">
