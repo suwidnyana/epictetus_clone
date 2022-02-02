@@ -3,25 +3,24 @@ import Container from "@components/Container";
 import PostMetaTitle from "@components/PostMetaTitle";
 import PostAuthor from "@components/PostAuthor";
 import Head from "next/head";
-import ReactMarkdown from 'react-markdown'
-
+import ReactMarkdown from "react-markdown";
 
 export async function getServerSideProps({ params: { slug } }) {
-
-  const reqDetail = await fetch(process.env.NEXT_PUBLIC_API_URL + '/posts?slug=' + slug);
-  const single = await reqDetail.json()
+  const reqDetail = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/posts?slug=" + slug
+  );
+  const single = await reqDetail.json();
 
   if (!single.length)
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
 
   return {
     props: {
-      single: single.length > 0 ? single[0] : {}
+      single: single.length > 0 ? single[0] : {},
     },
   };
-
 }
 
 export default function Detail({
@@ -29,20 +28,18 @@ export default function Detail({
     title,
     published_at,
     thumbnail,
-    category: {
-      name: categoryName
-    },
+    category: { name: categoryName },
     headline,
     content,
     slug,
     author: {
       name: authorName,
       job: authorJob,
-      avatar: {
-        name: avatarName
-      }
-    } } }) {
-  console.log(thumbnail.name)
+      avatar: { name: avatarName },
+    },
+  },
+}) {
+  console.log(thumbnail.name);
 
   return (
     <>
@@ -68,16 +65,11 @@ export default function Detail({
           <img src={thumbnail.name} className="w-full rounded-lg" />
         </div>
         <div className="md:w-8/12 w-full mx-auto leading-relaxed">
-          <p className="text-xl mb-4">
-            {headline}
-          </p>
+          <p className="text-xl mb-4">{headline}</p>
 
-          <ReactMarkdown className="prose">
-            {content}
-          </ReactMarkdown>
-
+          <ReactMarkdown className="prose">{content}</ReactMarkdown>
         </div>
       </Container>
     </>
-  )
+  );
 }

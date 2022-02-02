@@ -1,12 +1,15 @@
-import InfoPost from "@components/InfoPost"
-import Link from "next/link"
-export default function CardPost(props) {
+import InfoPost from "@components/InfoPost";
+import Link from "next/link";
 
+export default function CardPost(props) {
   return (
     <article>
       <Link href={props.slug}>
         <a>
-          <img src={props.thumbnail.name} className="rounded-xl w-full mb-4 md:mb-0" />
+          <img
+            src={process.env.NEXT_PUBLIC_API_URL + props.thumbnail.url}
+            className="rounded-xl w-full mb-4 md:mb-0"
+          />
         </a>
       </Link>
       <InfoPost
@@ -15,10 +18,10 @@ export default function CardPost(props) {
         date={props.published_at}
         title={props.title}
         shortDescription={props.headline}
-        authorAvatar={props.author.avatar.name}
+        authorAvatar={process.env.NEXT_PUBLIC_API_URL + props.author.avatar.url}
         authorName={props.author.name}
         authorJob={props.author.job}
       />
     </article>
-  )
+  );
 }
