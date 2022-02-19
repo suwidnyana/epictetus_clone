@@ -10,8 +10,7 @@ export default function FeaturedPost(props) {
             <a>
               <img
                 src={
-                  process.env.NEXT_PUBLIC_API_URL +
-                  props.thumbnail.formats.medium.url
+                  props.thumbnail.name
                 }
                 className="rounded-xl w-full mb-4 md:mb-0"
               />

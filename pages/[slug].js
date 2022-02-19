@@ -63,7 +63,7 @@ export default function Detail({
         </div>
         <div className="md:w-10/12 w-full mx-auto my-10">
           <img
-            src={process.env.NEXT_PUBLIC_API_URL + thumbnail.url}
+            src={thumbnail.name}
             className="w-full rounded-lg"
           />
         </div>

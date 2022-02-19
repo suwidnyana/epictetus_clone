@@ -4,6 +4,7 @@ import SectionHeader from "@components/SectionHeader";
 import PostList from "@components/PostList";
 
 export async function getServerSideProps({ params: { category } }) {
+  
   const reqCategory = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/categories?slug=" + category
   );
@@ -18,14 +19,15 @@ export async function getServerSideProps({ params: { category } }) {
 
   return {
     props: {
-      posts,
       categoryData: categoryData.length > 0 ? categoryData[0] : {},
+      posts,
     },
   };
 }
 
 export default function Posts({ posts, categoryData }) {
-  console.log(categoryData);
+  console.log(posts);
+ 
 
   return (
     <>

@@ -7,7 +7,7 @@ export default function CardPost(props) {
       <Link href={`/${props.slug}`}>
         <a>
           <img
-            src={process.env.NEXT_PUBLIC_API_URL + props.thumbnail.url}
+            src={props.thumbnail.name}
             className="rounded-xl w-full mb-4 md:mb-0"
           />
         </a>
@@ -18,7 +18,7 @@ export default function CardPost(props) {
         date={props.published_at}
         title={props.title}
         shortDescription={props.headline}
-        authorAvatar={process.env.NEXT_PUBLIC_API_URL + props.author.avatar.url}
+        authorAvatar={props.author.avatar.name}
         authorName={props.author.name}
         authorJob={props.author.job}
       />

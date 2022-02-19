@@ -15,6 +15,7 @@ export async function getServerSideProps() {
   const reqPosts = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?featured_ne=true"
   );
+  
   const posts = await reqPosts.json();
 
   return {
