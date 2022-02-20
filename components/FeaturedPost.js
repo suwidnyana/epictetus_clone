@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InfoPost from "@components/InfoPost";
+import Image from 'next/image'
 
 export default function FeaturedPost(props) {
   return (
@@ -12,6 +13,7 @@ export default function FeaturedPost(props) {
                 src={
                   props.thumbnail.name
                 }
+                
                 className="rounded-xl w-full mb-4 md:mb-0"
               />
             </a>

@@ -6,7 +6,8 @@ import Container from "@components/Container";
 import Head from "next/head";
 import PostList from "@components/PostList";
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  res.setHeader("Cache-Control", `s-maxage=60, stale-while-revalidate`);
   const reqFeatured = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?featured=true"
   );
@@ -15,7 +16,7 @@ export async function getServerSideProps() {
   const reqPosts = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?featured_ne=true"
   );
-  
+
   const posts = await reqPosts.json();
 
   return {
