@@ -3,7 +3,8 @@ import Head from "next/head";
 import SectionHeader from "@components/SectionHeader";
 import PostList from "@components/PostList";
 
-export async function getServerSideProps({ query: { q } }) {
+export async function getServerSideProps({ query: { q },req,res }) {
+  res.setHeader("Cache-Control", `s-maxage=60, stale-while-revalidate`);
   const reqPosts = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?title_contains=" + q
   );

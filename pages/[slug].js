@@ -5,7 +5,8 @@ import PostAuthor from "@components/PostAuthor";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 
-export async function getServerSideProps({ params: { slug } }) {
+export async function getServerSideProps({ params: { slug },req, res }) {
+  res.setHeader("Cache-Control", `s-maxage=60, stale-while-revalidate`);
   const reqDetail = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/posts?slug=" + slug
   );

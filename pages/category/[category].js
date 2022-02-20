@@ -3,8 +3,9 @@ import Head from "next/head";
 import SectionHeader from "@components/SectionHeader";
 import PostList from "@components/PostList";
 
-export async function getServerSideProps({ params: { category } }) {
-  
+export async function getServerSideProps({ params: { category },req,res }) {
+  res.setHeader("Cache-Control", `s-maxage=60, stale-while-revalidate`);
+
   const reqCategory = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/categories?slug=" + category
   );
